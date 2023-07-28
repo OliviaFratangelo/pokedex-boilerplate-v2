@@ -1,4 +1,4 @@
-const { Sequelize, DataTypes } = require("sequelize");
+const { DataTypes } = require("sequelize");
 const db = require("../db");
 
 const Trainer = db.define("Trainer", {
@@ -10,6 +10,4 @@ const Trainer = db.define("Trainer", {
 
 module.exports = Trainer;
 
-const Pokemon = require("./Pokemon");
 
-Trainer.hasMany(Pokemon);

@@ -64,7 +64,7 @@ app.delete("/pokemon/:id", async (req, res) => {
   }
 })();
 
-const PORT = 3000;
+const PORT = 1337;
 app.listen(PORT, () => {
   console.log(`server is listening on port ${PORT}`);
 });
