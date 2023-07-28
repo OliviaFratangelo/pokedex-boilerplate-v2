@@ -1,11 +1,20 @@
 const express = require("express");
-const app = express();
+const morgan = require("morgan");
+const pokeBank = require("./pokeBank");
+const pokeList = require("./views/pokeList");
+const pokeDetails = require("./views/pokeDetails");
 const Pokemon = require("./models/Pokemon");
 const db = require("./db");
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => res.send("Hello World!"));
+const app = express();
+
+app.use(morgan("dev"));
+app.use(express.static(__dirname + "/public"));
+
+app.get("/", (req, res) => {
+  const pokemon = pokeBank.list();
+  res.send(pokeList(pokemon));
+});
 
 app.get("/pokemon", async (req, res) => {
   const pokemon = await Pokemon.findAll();
