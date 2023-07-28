@@ -1,30 +1,30 @@
-const Sequelize = require("sequelize");
+const { DataTypes } = require("sequelize");
 const db = require("../db");
 const Trainer = require("./Trainer");
 
 const Pokemon = db.define("Pokemon", {
   name: {
-    type: Sequelize.STRING, // Use Sequelize here instead of DataTypes
+    type: DataTypes.STRING,
     allowNull: false,
   },
   type: {
-    type: Sequelize.STRING, // Use Sequelize here instead of DataTypes
-    allowNull: false,
-  },
-  trainer: {
-    type: Sequelize.STRING, // Use Sequelize here instead of DataTypes
+    type: DataTypes.STRING,
     allowNull: false,
   },
   date: {
-    type: Sequelize.DATE, // Use Sequelize here instead of DataTypes
+    type: DataTypes.DATE,
     allowNull: false,
   },
   image: {
-    type: Sequelize.STRING, // Use Sequelize here instead of DataTypes
+    type: DataTypes.STRING,
     allowNull: false,
   },
 });
 
-Pokemon.belongsTo(Trainer);
+Pokemon.belongsTo(Trainer, {
+  foreignKey: {
+    allowNull: false,
+  },
+});
 
 module.exports = Pokemon;
